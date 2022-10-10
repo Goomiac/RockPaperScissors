@@ -1,5 +1,19 @@
 function getComputerChoice() {
     /* select randomly between Rock Paper and Scissors and return it */
+    let choice = Math.floor(Math.random() * 3 + 1);
+    switch(choice) {
+        case 1:
+            return "rock";
+            break;
+        case 2:
+            return "paper";
+            break;
+        case 3:
+            return "scissors";
+            break;
+        default:
+            console.log("Something went wrong!");
+    }
 }
 
 /* Write a function that plays a single round of Rock Paper Scissors.
@@ -9,6 +23,31 @@ the computerSelection
 then return a string that declares the winner of the round like so:
 "You Lose! Paper beats Rock"
 */
+
+let playerSelection = prompt("Select your move (rock, paper or scissors): ").toLowerCase();
+let computerSelection = getComputerChoice();
+console.log("Player selection is: " + playerSelection);
+console.log("Computer selection is: " + computerSelection);
+
+function playRound(playerSelection, computerSelection) {
+    // compare two values
+    // rock beats scissors
+    // scissors beats paper
+    // paper beats rock
+    if (playerSelection === "rock" && computerSelection === "scissors") {
+        return "You WIN! " + playerSelection + " beats " + computerSelection;
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+        return "You WIN! " + playerSelection + " beats " + computerSelection;
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
+        return "You WIN! " + playerSelection + " beats " + computerSelection;
+    } else if (playerSelection === computerSelection) {
+        return "It's a TIE!";
+    } else {
+        return "You Lose! " + computerSelection + " beats " + playerSelection;
+    }
+}
+
+console.log(playRound(playerSelection, computerSelection));
 
 /*
 Important note: you want to return the results of this function call, not console.log() them.
