@@ -16,29 +16,20 @@ function getComputerChoice() {
     }
 }
 
-/* Write a function that plays a single round of Rock Paper Scissors.
-The function should take two parameters:
-the playerSelection
-the computerSelection
-then return a string that declares the winner of the round like so:
-"You Lose! Paper beats Rock"
-*/
+function playRound() {
+    let playerSelection = prompt("Select your move (rock, paper or scissors): ").toLowerCase();
+    let computerSelection = getComputerChoice();
+    console.log("Player selection is: " + playerSelection);
+    console.log("Computer selection is: " + computerSelection);
 
-let playerSelection = prompt("Select your move (rock, paper or scissors): ").toLowerCase();
-let computerSelection = getComputerChoice();
-console.log("Player selection is: " + playerSelection);
-console.log("Computer selection is: " + computerSelection);
-
-function playRound(playerSelection, computerSelection) {
-    // compare two values
-    // rock beats scissors
-    // scissors beats paper
-    // paper beats rock
     if (playerSelection === "rock" && computerSelection === "scissors") {
+        score += 1;
         return "You WIN! " + playerSelection + " beats " + computerSelection;
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
+        score += 1;
         return "You WIN! " + playerSelection + " beats " + computerSelection;
     } else if (playerSelection === "paper" && computerSelection === "rock") {
+        score += 1;
         return "You WIN! " + playerSelection + " beats " + computerSelection;
     } else if (playerSelection === computerSelection) {
         return "It's a TIE!";
@@ -47,7 +38,18 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    
+    for (let i = 1; i <= 5; i++) {
+        console.log("Round n." + i);
+        console.log(playRound());
+    }
+    console.log("Game is finished, your score is: " + score + "/5");
+}
+
+let score = 0;
+
+game();
 
 /*
 Important note: you want to return the results of this function call, not console.log() them.
