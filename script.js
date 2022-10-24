@@ -1,3 +1,6 @@
+let score_value = 0;
+let round = 0;
+
 function getComputerChoice() {
     /* select randomly between Rock Paper and Scissors and return it */
     let choice = Math.floor(Math.random() * 3 + 1);
@@ -19,15 +22,34 @@ function getComputerChoice() {
 function playRound() {
     let playerSelection = this.id;
     let computerSelection = getComputerChoice();
+    const results_div = document.querySelector('#results');
+    const score = document.querySelector('#score');
+
+    results_div.innerHTML = "Player selection is: " + playerSelection;
+    results_div.innerHTML += "<br>Computer selection is: " + computerSelection;
+
+    score.textContent = "Round/score is: " + round + "/" + score_value;
+
     console.log("Player selection is: " + playerSelection);
     console.log("Computer selection is: " + computerSelection);
 
+    if (round == 5) {
+        // display winner
+        round = 0;
+        score_value = 0;
+    }
+
+    round++;
+
     if (playerSelection === "rock" && computerSelection === "scissors") {
         return "You WIN! " + playerSelection + " beats " + computerSelection;
+        score_value++;
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
         return "You WIN! " + playerSelection + " beats " + computerSelection;
+        score_value++;
     } else if (playerSelection === "paper" && computerSelection === "rock") {
         return "You WIN! " + playerSelection + " beats " + computerSelection;
+        score_value++;
     } else if (playerSelection === computerSelection) {
         return "It's a TIE!";
     } else {
@@ -42,3 +64,4 @@ const scissors_btn = document.querySelector('#scissors');
 rock_btn.addEventListener('click', playRound);
 paper_btn.addEventListener('click', playRound);
 scissors_btn.addEventListener('click', playRound);
+
