@@ -1,5 +1,5 @@
-let score_value = 0;
-let round = 0;
+let player_score = 0;
+let computer_score = 0;
 
 function getComputerChoice() {
     /* select randomly between Rock Paper and Scissors and return it */
@@ -7,13 +7,10 @@ function getComputerChoice() {
     switch(choice) {
         case 1:
             return "rock";
-            break;
         case 2:
             return "paper";
-            break;
         case 3:
             return "scissors";
-            break;
         default:
             console.log("Something went wrong!");
     }
@@ -24,36 +21,40 @@ function playRound() {
     let computerSelection = getComputerChoice();
     const results_div = document.querySelector('#results');
     const score = document.querySelector('#score');
+    const winner = document.querySelector('#winner');
+
+    if (playerSelection === "rock" && computerSelection === "scissors") {
+        player_score++;
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+        player_score++;
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
+        player_score++;
+    } else if (playerSelection === computerSelection) {
+        console.log("TIE;");
+    } else {
+        computer_score++;
+    }
 
     results_div.innerHTML = "Player selection is: " + playerSelection;
     results_div.innerHTML += "<br>Computer selection is: " + computerSelection;
 
-    score.textContent = "Round/score is: " + round + "/" + score_value;
+    score.textContent = "Player/computer score is: " + player_score + "/" + computer_score;
 
     console.log("Player selection is: " + playerSelection);
     console.log("Computer selection is: " + computerSelection);
 
-    if (round == 5) {
+    if (player_score == 5 || computer_score == 5) {
         // display winner
-        round = 0;
-        score_value = 0;
-    }
-
-    round++;
-
-    if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You WIN! " + playerSelection + " beats " + computerSelection;
-        score_value++;
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You WIN! " + playerSelection + " beats " + computerSelection;
-        score_value++;
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You WIN! " + playerSelection + " beats " + computerSelection;
-        score_value++;
-    } else if (playerSelection === computerSelection) {
-        return "It's a TIE!";
+        if (player_score > computer_score) {
+            winner.textContent = "YOU WIN!";
+        } else {
+            winner.textContent = "COMPUTER WINS!";
+        }
+        
+        player_score = 0;
+        computer_score = 0;
     } else {
-        return "You Lose! " + computerSelection + " beats " + playerSelection;
+        winner.textContent = "";
     }
 }
 
