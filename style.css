@@ -1,0 +1,38 @@
+html * {
+    font-family: Arial;
+}
+
+#rock, #paper, #scissors {
+    font-size: 120px;
+}
+
+button {
+    border: black 2px;
+    background-color: white;
+    margin: 5px;
+}
+
+.header {
+    display: flex;
+    font-size: 50px;
+    font-weight: bold;
+    justify-content: space-around;
+    margin: 0px 150px 50px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.score {
+    background-color: lightgreen;
+    height: 100px;
+    width: 100px;
+    margin: 5px;
+}
+
+#player-score, #computer-score {
+    display: flex;
+    width: 530px;
+}
