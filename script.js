@@ -23,11 +23,18 @@ function add_score(scoreDiv) {
     player_score_div.appendChild(score_div);
 }
 
+function newGame() {
+    player_score = computer_score = 0;
+    const player_score_div = document.querySelector('#player-score');
+    const computer_score_div = document.querySelector('#computer-score');
+    player_score_div.innerHTML = '';
+    computer_score_div.innerHTML = '';
+}
+
 function playRound() {
     let playerSelection = this.id;
     let computerSelection = getComputerChoice();
     const results_div = document.querySelector('#results');
-    const score = document.querySelector('#score');
     const winner = document.querySelector('#winner');
 
     if (playerSelection === "rock" && computerSelection === "scissors") {
@@ -49,8 +56,6 @@ function playRound() {
     results_div.innerHTML = "Player selection is: " + playerSelection;
     results_div.innerHTML += "<br>Computer selection is: " + computerSelection;
 
-    score.textContent = "Player/computer score is: " + player_score + "/" + computer_score;
-
     console.log("Player selection is: " + playerSelection);
     console.log("Computer selection is: " + computerSelection);
 
@@ -62,6 +67,11 @@ function playRound() {
             winner.textContent = "COMPUTER WINS!";
         }
         
+        const play_again_btn = document.createElement('button');
+        play_again_btn.textContent = 'PLAY AGAIN!';
+        play_again_btn.addEventListener('click', newGame);
+        winner.appendChild(play_again_btn);
+
         player_score = 0;
         computer_score = 0;
     } else {
