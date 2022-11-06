@@ -16,8 +16,8 @@ function getComputerChoice() {
     }
 }
 
-function add_score() {
-    const player_score_div = document.querySelector('#player-score');
+function add_score(scoreDiv) {
+    const player_score_div = document.querySelector(scoreDiv);
     const score_div = document.createElement('div');
     score_div.classList.add('score');
     player_score_div.appendChild(score_div);
@@ -32,17 +32,18 @@ function playRound() {
 
     if (playerSelection === "rock" && computerSelection === "scissors") {
         player_score++;
-        add_score();
+        add_score('#player-score');
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
         player_score++;
-        add_score();
+        add_score('#player-score');
     } else if (playerSelection === "paper" && computerSelection === "rock") {
         player_score++;
-        add_score();
+        add_score('#player-score');
     } else if (playerSelection === computerSelection) {
         console.log("TIE;");
     } else {
         computer_score++;
+        add_score('#computer-score')
     }
 
     results_div.innerHTML = "Player selection is: " + playerSelection;

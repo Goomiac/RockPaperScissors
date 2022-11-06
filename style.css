@@ -32,6 +32,10 @@ button {
     margin: 5px;
 }
 
+#computer-score .score {
+    background-color: lightcoral;
+}
+
 #player-score, #computer-score {
     display: flex;
     width: 530px;
